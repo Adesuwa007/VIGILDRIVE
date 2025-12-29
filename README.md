@@ -7,6 +7,12 @@ sdk version: 6.2.0
 # VIGILDRIVE  
 ### Real-Time Driver Drowsiness Detection System
 
+
+## ⚠️ Webcam Notice (Cloud Demo)
+
+Due to browser and security restrictions, Hugging Face Spaces cannot access local webcams. The hosted demo is intended to showcase the UI, system flow, and detection logic. For full real-time webcam-based drowsiness detection, please run the project locally. A working real-time demo video is included with the submission.
+
+
 VIGILDRIVE is a real-time system that checks driver attention and drowsiness using computer vision. It monitors eye behavior through a webcam and alerts the driver when it spots signs of fatigue. The system is lightweight and can run on any standard machine without special hardware. Driver drowsiness is a major cause of road accidents worldwide. It often results from fatigue, long hours of driving, or nighttime driving. Many current solutions are expensive, vehicle-specific, or hard to get. VIGILDRIVE solves this problem by offering an affordable camera-based solution that works in real time.
 
 The system captures live video from a webcam, detects facial features using MediaPipe Face Mesh, calculates the Eye Aspect Ratio (EAR) in real time, and identifies prolonged eye closure. It triggers visual and audio alerts when it detects drowsiness. It also automatically turns on night vision in low-light situations to maintain accurate detection. VIGILDRIVE includes a webcam monitoring, EAR-based detection, instant audio alerts, an automatic night vision mode, a modern web interface created with Gradio, lightweight processing that is easy on CPU use, and it is fully open-source.
