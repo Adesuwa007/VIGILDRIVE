@@ -1,6 +1,6 @@
 ---
-title: VIGILDRIVE
-app_file: driver_drowsiness_web.py
+Title: VIGILDRIVE
+APP File: driver_drowsiness_web.py
 sdk: gradio
 sdk_version: 6.2.0
 ---
