@@ -1,3 +1,5 @@
+import os
+IS_HF = os.environ.get("SPACE_ID") is not None
 import cv2
 import mediapipe as mp
 import numpy as np
@@ -13,13 +15,24 @@ def is_dark(frame, threshold=60):
     return np.mean(gray) < threshold
 
 # GENTLE AUDIO ALERT
-pygame.mixer.init(frequency=22050, size=-16, channels=2)
-sr = 22050
-t = np.linspace(0, 0.5, int(sr * 0.5), False)
-tone = 0.15 * np.sin(2 * np.pi * 440 * t)
-tone = np.column_stack((tone, tone))
-alert_sound = pygame.sndarray.make_sound((tone * 32767).astype(np.int16))
+sound_enabled = False
 
+if not IS_HF:
+    try:
+        import pygame
+        pygame.mixer.init(frequency=22050, size=-16, channels=2)
+
+        sr = 22050
+        t = np.linspace(0, 0.5, int(sr * 0.5), False)
+        tone = 0.15 * np.sin(2 * np.pi * 440 * t)
+        tone = np.column_stack((tone, tone))
+        alert_sound = pygame.sndarray.make_sound(
+            (tone * 32767).astype(np.int16)
+        )
+
+        sound_enabled = True
+    except Exception as e:
+        print("Audio disabled:", e)
 
 # NIGHT VISION
 def night_vision(frame):
@@ -48,7 +61,7 @@ class DrowsinessDetector:
         self.RIGHT_EYE = [33, 160, 158, 133, 153, 144]
         self.MOUTH = [61, 291, 0, 17, 269, 405]
         self.EAR_THRESH = 0.25
-        self.CLOSED_FRAMES = 10
+        self.CLOSED_FRAMES = 6
         self.eye_counter = 0
         self.prev_ear = 0.3
         self.blinks = 0

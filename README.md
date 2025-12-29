@@ -1,3 +1,9 @@
+---
+title: VIGILDRIVE
+app_file: driver_drowsiness_web.py
+sdk: gradio
+sdk_version: 6.2.0
+---
 # VIGILDRIVE  
 ### Real-Time Driver Drowsiness Detection System
 
